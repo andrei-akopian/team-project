@@ -63,7 +63,6 @@ public class GameView extends JFrame implements GameViewModelListener {
     }
     public void updateBoard(int row, int col, int player, int winner) {
 
-
         if (player == 1) {
             buttons[row][col].setBackground(Color.BLACK);
         } else if (player == 2) {
@@ -75,10 +74,14 @@ public class GameView extends JFrame implements GameViewModelListener {
 
         if (winner != 0){
             System.out.println(winner);
-            for (JButton[] buttons1:buttons){
-                for (JButton button: buttons1){
-                    button.setEnabled(false);
-                }
+            disableButtons();
+        }
+    }
+
+    public void disableButtons() {
+        for (JButton[] buttons_row:buttons){
+            for (JButton button: buttons_row){
+                button.setEnabled(false);
             }
         }
     }
@@ -96,8 +99,8 @@ public class GameView extends JFrame implements GameViewModelListener {
 
             GamePresenter presenter = new GamePresenter(gameViewModel);
 
-            GameInteractor interactor =
-                    new GameInteractor(presenter);
+            GameInputBoundary interactor =
+                    new BotGameInteractor(presenter);
 
             GameController controller =
                     new GameController(interactor);

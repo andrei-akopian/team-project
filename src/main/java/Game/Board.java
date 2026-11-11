@@ -18,9 +18,9 @@ public class Board {
         winner = 0;
         moves = new ArrayList<>();
         boardState = new int[BOARD_SIZE][BOARD_SIZE];
-        for (int y = 0; y < BOARD_SIZE; y++) {
-            for (int x = 0; x < BOARD_SIZE; x++) {
-                boardState[x][y] = 0;
+        for (int row = 0; row < BOARD_SIZE; row++) {
+            for (int column = 0; column < BOARD_SIZE; column++) {
+                boardState[row][column] = 0;
             }
         }
     }
@@ -35,6 +35,14 @@ public class Board {
 
     public int getTile(int row, int column) {
         return boardState[row][column];
+    }
+
+    public int getTile(Move move) {
+        return getTile(move.row, move.column);
+    }
+
+    public boolean isTileEmpty(int row, int column) {
+        return boardState[row][column] == 0;
     }
 
     public boolean makeMove(Move move, int player){
@@ -89,6 +97,12 @@ public class Board {
         return max == WIN_THRESHOLD;
     }
 
+    public void undo(){
+        Move lastmove = moves.remove(moves.size()-1);
+        winner = 0;
+        boardState[lastmove.row][lastmove.column] = 0;
+    }
+
   /**
    * @return return a copy of move history (mutability safe)
    */
@@ -98,5 +112,17 @@ public class Board {
             moves_copy.add(move.copy());
         }
         return moves_copy;
+    }
+
+    public Board copy() {
+        Board newboard = new Board();
+        newboard.winner = winner;
+        newboard.moves = getMoveHistory();
+        for (int row = 0; row < BOARD_SIZE; row++) {
+            for (int column = 0; column < BOARD_SIZE; column++) {
+                newboard.boardState[row][column] = boardState[row][column];
+            }
+        }
+        return newboard;
     }
 }
