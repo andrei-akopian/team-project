@@ -45,6 +45,10 @@ public class Board {
         return boardState[row][column] == 0;
     }
 
+    public boolean isTileEmpty(Move move) {
+        return isTileEmpty(move.row, move.column);
+    }
+
     public boolean makeMove(Move move, int player){
         if (player != 1 && player != 2){
             return false;

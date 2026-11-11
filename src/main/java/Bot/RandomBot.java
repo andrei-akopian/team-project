@@ -29,4 +29,9 @@ public class RandomBot implements Bot {
     int column = randomInt(0, board_size);
     return new Move(row, column);
   }
+
+  @Override
+  public int getPlayerId() {
+    return playerid;
+  }
 }
