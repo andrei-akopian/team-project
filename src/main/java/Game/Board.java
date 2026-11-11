@@ -73,6 +73,7 @@ public class Board {
 
     public boolean checkDirection(int row, int column, int dx, int dy, int player){
         int counter = 0;
+        int max = 0;
         for(int i = -WIN_THRESHOLD; i <= WIN_THRESHOLD; i++) {
             if (inBounds(row + i * dx, column + i * dy)) {
                 if (boardState[row + i * dx][column + i * dy] == player) {
@@ -81,11 +82,11 @@ public class Board {
                     counter = 0;
                 }
             }
-            if (counter >= WIN_THRESHOLD) {
-                return true;
+            if (counter > max) {
+                max = counter;
             }
         }
-        return false;
+        return max == WIN_THRESHOLD;
     }
 
   /**

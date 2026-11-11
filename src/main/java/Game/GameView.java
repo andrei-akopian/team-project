@@ -5,13 +5,17 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-public class GameView extends JFrame {
+public class GameView extends JFrame implements GameViewModelListener {
     private final int BOARD_SIZE = AppConfig.getInt("board_size");
     private JButton[][] buttons = new JButton[BOARD_SIZE][BOARD_SIZE];
     private JPanel board;
-    private GameController gameController;
 
-    public GameView() {
+    private GameController gameController;
+    private final GameViewModel gameViewModel;
+
+    public GameView(GameViewModel gameViewModel) {
+        this.gameViewModel = gameViewModel;
+        this.gameViewModel.addListener(this);
         gameController = null;
         setTitle("Five in a Row");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,13 +61,8 @@ public class GameView extends JFrame {
             }
         }
     }
+    public void updateBoard(int row, int col, int player, int winner) {
 
-    public void updateBoard(GameViewModel viewModel) {
-
-        int row = viewModel.getRow();
-        int col = viewModel.getColumn();
-        int player = viewModel.getPlayer();
-        int winner = viewModel.getWinner();
 
         if (player == 1) {
             buttons[row][col].setBackground(Color.BLACK);
@@ -91,10 +90,18 @@ public class GameView extends JFrame {
     public static void main(String[] args) {
 
         SwingUtilities.invokeLater(() -> {
-            GameView view = new GameView();
-            GamePresenter presenter = new GamePresenter(view);
-            GameInteractor interactor = new GameInteractor(presenter);
-            GameController controller = new GameController(interactor);
+
+            GameViewModel gameViewModel = new GameViewModel();
+            GameView view = new GameView(gameViewModel);
+
+            GamePresenter presenter = new GamePresenter(gameViewModel);
+
+            GameInteractor interactor =
+                    new GameInteractor(presenter);
+
+            GameController controller =
+                    new GameController(interactor);
+
             view.setController(controller);
             view.setVisible(true);
         });
