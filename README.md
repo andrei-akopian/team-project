@@ -47,8 +47,8 @@ Five in a row game, where the goal is to get 5 in a row on a 20x20 board (simila
 | Jean        | 1, 2         |
 ---
 ## Entities
-### Entity 1
-### Entity 2
+### Game (handles game logic, such as whos turn it is, and manages the board)
+### Board (handles game logic, such as checking for wins)
 (Add additional entities as needed.)
 ---
 ## API Usage
