@@ -21,7 +21,7 @@ public class RandomBot implements Bot {
   }
 
   private static int randomInt(int min, int max){
-    return new Random().nextInt((max - min) + 1) + min;
+    return new Random().nextInt(max - min) + min;
   }
 
   private static Move randomMove(int board_size){

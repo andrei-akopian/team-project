@@ -38,7 +38,7 @@ public class Board {
     }
 
     public int getTile(Move move) {
-        return boardState[move.row][move.column];
+        return getTile(move.row, move.column);
     }
 
     public boolean isTileEmpty(int row, int column) {

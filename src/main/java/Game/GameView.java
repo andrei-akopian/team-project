@@ -76,10 +76,14 @@ public class GameView extends JFrame {
 
         if (winner != 0){
             System.out.println(winner);
-            for (JButton[] buttons1:buttons){
-                for (JButton button: buttons1){
-                    button.setEnabled(false);
-                }
+            disableButtons();
+        }
+    }
+
+    public void disableButtons() {
+        for (JButton[] buttons_row:buttons){
+            for (JButton button: buttons_row){
+                button.setEnabled(false);
             }
         }
     }
@@ -93,7 +97,7 @@ public class GameView extends JFrame {
         SwingUtilities.invokeLater(() -> {
             GameView view = new GameView();
             GamePresenter presenter = new GamePresenter(view);
-            GameInteractor interactor = new GameInteractor(presenter);
+            GameInputBoundary interactor = new BotGameInteractor(presenter);
             GameController controller = new GameController(interactor);
             view.setController(controller);
             view.setVisible(true);

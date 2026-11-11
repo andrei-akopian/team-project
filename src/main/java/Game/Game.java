@@ -22,4 +22,8 @@ public class Game {
     public int getWinner(){
         return board.getWinner();
     }
+
+    public Board getBoard(){
+        return board;
+    }
 }
