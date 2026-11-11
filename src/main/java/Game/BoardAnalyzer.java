@@ -14,7 +14,7 @@ public class BoardAnalyzer {
     for (int row = 0; row < board.BOARD_SIZE; row++) {
       for (int column = 0; column < board.BOARD_SIZE; column++) {
         Move move = new Move(row, column);
-        if (isMoveWinning(move, player)) {
+        if (board.isTileEmpty(move) && isMoveWinning(move, player)) {
           return move;
         }
       }
