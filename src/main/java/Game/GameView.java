@@ -5,12 +5,15 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-public class GameView extends JFrame {
+public class GameView extends JFrame implements GameViewModelListener {
 
     private JButton[][] buttons = new JButton[15][15];
     private GameController gameController;
+    private final GameViewModel gameViewModel;
 
-    public GameView() {
+    public GameView(GameViewModel gameViewModel) {
+        this.gameViewModel = gameViewModel;
+        this.gameViewModel.addListener(this);
         gameController = null;
         setTitle("Five in a Row");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,12 +59,8 @@ public class GameView extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
-    public void updateBoard(GameViewModel viewModel) {
+    public void updateBoard(int row, int col, int player, int winner) {
 
-        int row = viewModel.getRow();
-        int col = viewModel.getColumn();
-        int player = viewModel.getPlayer();
-        int winner = viewModel.getWinner();
 
         if (player == 1) {
             buttons[row][col].setBackground(Color.BLACK);
@@ -90,9 +89,10 @@ public class GameView extends JFrame {
 
         SwingUtilities.invokeLater(() -> {
 
-            GameView view = new GameView();
+            GameViewModel gameViewModel = new GameViewModel();
+            GameView view = new GameView(gameViewModel);
 
-            GamePresenter presenter = new GamePresenter(view);
+            GamePresenter presenter = new GamePresenter(gameViewModel);
 
             GameInteractor interactor =
                     new GameInteractor(presenter);
