@@ -13,9 +13,17 @@ public class Game {
     }
     public void playerInput(Move move){
         board.makeMove(move, turn);
-        turn = 3-turn;
+        if (turn == 1){
+            turn = 2;
+        } else if (turn == 2){
+            turn = 1;
+        }
     }
     public int getWinner(){
         return board.getWinner();
+    }
+
+    public Board getBoard(){
+        return board;
     }
 }

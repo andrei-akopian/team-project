@@ -2,22 +2,16 @@ package Game;
 
 public class GamePresenter implements GameOutputBoundary {
 
-    private final GameView view;
+    private final GameViewModel gameViewModel;
 
-    public GamePresenter(GameView view) {
-        this.view = view;
+    public GamePresenter(GameViewModel gameViewModel) {
+        this.gameViewModel = gameViewModel;
     }
 
     @Override
-    public void prepareView(GameOutputData outputData) {
+    public void prepareView(GameOutputData response) {
 
-        GameViewModel viewModel = new GameViewModel(
-                outputData.getRow(),
-                outputData.getColumn(),
-                outputData.getPlayer(),
-                outputData.getWinner()
-        );
-
-        view.updateBoard(viewModel);
+       gameViewModel.setValues(response.getRow(),response.getColumn(),response.getPlayer(),response.getWinner());
+       gameViewModel.updateBoard();
     }
 }

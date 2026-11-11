@@ -13,17 +13,20 @@ public class RandomBot implements Bot {
 
   @Override
   public Move calculateMove(Board board) {
-    int row = randomInt(0, board.BOARD_SIZE);
-    int column = randomInt(0, board.BOARD_SIZE);
-    while (board.getTile(row, column) != 0) {
-      row = randomInt(0, board.BOARD_SIZE);
-      column = randomInt(0, board.BOARD_SIZE);
+    Move candidate = randomMove(board.BOARD_SIZE);
+    while (board.getTile(candidate) != 0) {
+      candidate = randomMove(board.BOARD_SIZE);
     }
-    return new Move(row, column);
+    return candidate;
   }
 
-  private int randomInt(int min, int max){
-    int random = new Random().nextInt((max - min) + 1) + min;
-    return random;
+  private static int randomInt(int min, int max){
+    return new Random().nextInt(max - min) + min;
+  }
+
+  private static Move randomMove(int board_size){
+    int row = randomInt(0, board_size);
+    int column = randomInt(0, board_size);
+    return new Move(row, column);
   }
 }

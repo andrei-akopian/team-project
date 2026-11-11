@@ -10,14 +10,10 @@ public class GameInteractor implements GameInputBoundary {
 
     @Override
     public void execute(Move move) {
-        final int x = move.column;
-        final int y = move.row;
         final int player = game.getTurn();
         game.playerInput(move);
         final int winner = game.getWinner();
-        final GameOutputData gameOutputData = new GameOutputData(y,x,player,winner);
+        final GameOutputData gameOutputData = new GameOutputData(move.column,move.row,player,winner);
         gamePresenter.prepareView(gameOutputData);
-
-
     }
 }

@@ -4,8 +4,8 @@ import Game.Move;
 import java.util.ArrayList;
 
 public class Board {
-    public final int BOARD_SIZE = 15;
-    public final int WIN_THRESHOLD = 5;
+    public final int BOARD_SIZE = AppConfig.getInt("board_size");
+    public final int WIN_THRESHOLD = AppConfig.getInt("win_threshold");
     private int[][] boardState;
     private int winner = 0;
     private ArrayList<Move> moves;
@@ -18,9 +18,9 @@ public class Board {
         winner = 0;
         moves = new ArrayList<>();
         boardState = new int[BOARD_SIZE][BOARD_SIZE];
-        for (int y = 0; y < BOARD_SIZE; y++) {
-            for (int x = 0; x < BOARD_SIZE; x++) {
-                boardState[x][y] = 0;
+        for (int row = 0; row < BOARD_SIZE; row++) {
+            for (int column = 0; column < BOARD_SIZE; column++) {
+                boardState[row][column] = 0;
             }
         }
     }
@@ -35,6 +35,14 @@ public class Board {
 
     public int getTile(int row, int column) {
         return boardState[row][column];
+    }
+
+    public int getTile(Move move) {
+        return getTile(move.row, move.column);
+    }
+
+    public boolean isTileEmpty(int row, int column) {
+        return boardState[row][column] == 0;
     }
 
     public boolean makeMove(Move move, int player){
@@ -73,6 +81,7 @@ public class Board {
 
     public boolean checkDirection(int row, int column, int dx, int dy, int player){
         int counter = 0;
+        int max = 0;
         for(int i = -WIN_THRESHOLD; i <= WIN_THRESHOLD; i++) {
             if (inBounds(row + i * dx, column + i * dy)) {
                 if (boardState[row + i * dx][column + i * dy] == player) {
@@ -81,11 +90,17 @@ public class Board {
                     counter = 0;
                 }
             }
-            if (counter >= WIN_THRESHOLD) {
-                return true;
+            if (counter > max) {
+                max = counter;
             }
         }
-        return false;
+        return max == WIN_THRESHOLD;
+    }
+
+    public void undo(){
+        Move lastmove = moves.remove(moves.size()-1);
+        winner = 0;
+        boardState[lastmove.row][lastmove.column] = 0;
     }
 
   /**
@@ -97,5 +112,17 @@ public class Board {
             moves_copy.add(move.copy());
         }
         return moves_copy;
+    }
+
+    public Board copy() {
+        Board newboard = new Board();
+        newboard.winner = winner;
+        newboard.moves = getMoveHistory();
+        for (int row = 0; row < BOARD_SIZE; row++) {
+            for (int column = 0; column < BOARD_SIZE; column++) {
+                newboard.boardState[row][column] = boardState[row][column];
+            }
+        }
+        return newboard;
     }
 }

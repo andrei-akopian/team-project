@@ -5,23 +5,41 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-public class GameView extends JFrame {
+public class GameView extends JFrame implements GameViewModelListener {
+    private final int BOARD_SIZE = AppConfig.getInt("board_size");
+    private JButton[][] buttons = new JButton[BOARD_SIZE][BOARD_SIZE];
+    private JPanel board;
 
-    private JButton[][] buttons = new JButton[15][15];
     private GameController gameController;
+    private final GameViewModel gameViewModel;
 
-    public GameView() {
+    public GameView(GameViewModel gameViewModel) {
+        this.gameViewModel = gameViewModel;
+        this.gameViewModel.addListener(this);
         gameController = null;
         setTitle("Five in a Row");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        board = new JPanel(new GridLayout(BOARD_SIZE, BOARD_SIZE));
+        populateBoardButtons();
+        board.setPreferredSize(new Dimension(800, 800));
 
-        JPanel board = new JPanel(new GridLayout(15, 15));
+        JPanel container = new JPanel(new GridBagLayout());
 
+        container.add(board);
 
+        add(container);
 
-        for (int row = 0; row < 15; row++) {
-            for (int col = 0; col < 15; col++) {
+        pack();
+        setSize(1000,1000);
+
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    public void populateBoardButtons () {
+        for (int row = 0; row < BOARD_SIZE; row++) {
+            for (int col = 0; col < BOARD_SIZE; col++) {
                 JButton button = new JButton();
                 buttons[row][col] = button;
 
@@ -42,30 +60,12 @@ public class GameView extends JFrame {
                 board.add(button);
             }
         }
-        board.setPreferredSize(new Dimension(800, 800));
-
-        JPanel container = new JPanel(new GridBagLayout());
-
-        container.add(board);
-
-        add(container);
-
-        pack();
-        setSize(1000,1000);
-
-        setLocationRelativeTo(null);
-        setVisible(true);
     }
-    public void updateBoard(GameViewModel viewModel) {
-
-        int row = viewModel.getRow();
-        int col = viewModel.getColumn();
-        int player = viewModel.getPlayer();
-        int winner = viewModel.getWinner();
+    public void updateBoard(int row, int col, int player, int winner) {
 
         if (player == 1) {
             buttons[row][col].setBackground(Color.BLACK);
-        } else {
+        } else if (player == 2) {
             buttons[row][col].setBackground(Color.WHITE);
         }
 
@@ -74,10 +74,14 @@ public class GameView extends JFrame {
 
         if (winner != 0){
             System.out.println(winner);
-            for (JButton[] buttons1:buttons){
-                for (JButton button: buttons1){
-                    button.setEnabled(false);
-                }
+            disableButtons();
+        }
+    }
+
+    public void disableButtons() {
+        for (JButton[] buttons_row:buttons){
+            for (JButton button: buttons_row){
+                button.setEnabled(false);
             }
         }
     }
@@ -90,18 +94,18 @@ public class GameView extends JFrame {
 
         SwingUtilities.invokeLater(() -> {
 
-            GameView view = new GameView();
+            GameViewModel gameViewModel = new GameViewModel();
+            GameView view = new GameView(gameViewModel);
 
-            GamePresenter presenter = new GamePresenter(view);
+            GamePresenter presenter = new GamePresenter(gameViewModel);
 
-            GameInteractor interactor =
-                    new GameInteractor(presenter);
+            GameInputBoundary interactor =
+                    new BotGameInteractor(presenter);
 
             GameController controller =
                     new GameController(interactor);
 
             view.setController(controller);
-
             view.setVisible(true);
         });
     }
