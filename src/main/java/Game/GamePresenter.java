@@ -10,14 +10,12 @@ public class GamePresenter implements GameOutputBoundary {
 
     @Override
     public void prepareView(GameOutputData outputData) {
-
         GameViewModel viewModel = new GameViewModel(
                 outputData.getRow(),
                 outputData.getColumn(),
                 outputData.getPlayer(),
                 outputData.getWinner()
         );
-
         view.updateBoard(viewModel);
     }
 }
