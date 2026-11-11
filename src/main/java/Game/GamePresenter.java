@@ -1,5 +1,6 @@
 package Game;
 
+import java.awt.Color;
 public class GamePresenter implements GameOutputBoundary {
 
     private final GameViewModel gameViewModel;
@@ -10,8 +11,22 @@ public class GamePresenter implements GameOutputBoundary {
 
     @Override
     public void prepareView(GameOutputData response) {
+        Color color = (response.getPlayer() == 1) ? Color.BLACK : Color.WHITE;
+        String message;
+        if (response.getWinner() != 0) {
+            message = "Player " + response.getWinner() + " wins!";
+        }
+        else{
+            message = "";
+        }
 
-       gameViewModel.setValues(response.getRow(),response.getColumn(),response.getPlayer(),response.getWinner());
-       gameViewModel.updateBoard();
+        gameViewModel.setMoveResult(
+                response.getRow(),
+                response.getColumn(),
+                color,
+                response.getWinner(),
+                message
+        );
+        gameViewModel.updateBoard();
     }
 }
