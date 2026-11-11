@@ -4,8 +4,8 @@ import Game.Move;
 import java.util.ArrayList;
 
 public class Board {
-    public final int BOARD_SIZE = 15;
-    public final int WIN_THRESHOLD = 5;
+    public final int BOARD_SIZE = AppConfig.getInt("board_size");
+    public final int WIN_THRESHOLD = AppConfig.getInt("win_threshold");
     private int[][] boardState;
     private int winner = 0;
     private ArrayList<Move> moves;

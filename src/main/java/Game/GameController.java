@@ -8,9 +8,7 @@ public class GameController {
     }
 
     public void execute(int row, int col) {
-        final Move loginInputData = new Move(
-                row, col);
-
+        final Move loginInputData = new Move(row, col);
         gameInteractor.execute(loginInputData);
     }
 }

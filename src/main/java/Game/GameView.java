@@ -6,8 +6,10 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class GameView extends JFrame implements GameViewModelListener {
+    private final int BOARD_SIZE = AppConfig.getInt("board_size");
+    private JButton[][] buttons = new JButton[BOARD_SIZE][BOARD_SIZE];
+    private JPanel board;
 
-    private JButton[][] buttons = new JButton[15][15];
     private GameController gameController;
     private final GameViewModel gameViewModel;
 
@@ -18,13 +20,26 @@ public class GameView extends JFrame implements GameViewModelListener {
         setTitle("Five in a Row");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        board = new JPanel(new GridLayout(BOARD_SIZE, BOARD_SIZE));
+        populateBoardButtons();
+        board.setPreferredSize(new Dimension(800, 800));
 
-        JPanel board = new JPanel(new GridLayout(15, 15));
+        JPanel container = new JPanel(new GridBagLayout());
 
+        container.add(board);
 
+        add(container);
 
-        for (int row = 0; row < 15; row++) {
-            for (int col = 0; col < 15; col++) {
+        pack();
+        setSize(1000,1000);
+
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    public void populateBoardButtons () {
+        for (int row = 0; row < BOARD_SIZE; row++) {
+            for (int col = 0; col < BOARD_SIZE; col++) {
                 JButton button = new JButton();
                 buttons[row][col] = button;
 
@@ -45,26 +60,13 @@ public class GameView extends JFrame implements GameViewModelListener {
                 board.add(button);
             }
         }
-        board.setPreferredSize(new Dimension(800, 800));
-
-        JPanel container = new JPanel(new GridBagLayout());
-
-        container.add(board);
-
-        add(container);
-
-        pack();
-        setSize(1000,1000);
-
-        setLocationRelativeTo(null);
-        setVisible(true);
     }
     public void updateBoard(int row, int col, int player, int winner) {
 
 
         if (player == 1) {
             buttons[row][col].setBackground(Color.BLACK);
-        } else {
+        } else if (player == 2) {
             buttons[row][col].setBackground(Color.WHITE);
         }
 
@@ -101,7 +103,6 @@ public class GameView extends JFrame implements GameViewModelListener {
                     new GameController(interactor);
 
             view.setController(controller);
-
             view.setVisible(true);
         });
     }
