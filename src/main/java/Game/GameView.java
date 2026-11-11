@@ -73,9 +73,20 @@ public class GameView extends JFrame implements GameViewModelListener {
         buttons[row][col].setEnabled(false);
 
         if (winner != 0){
-            System.out.println(winner);
-            disableButtons();
+            handleWin(winner);
         }
+    }
+
+    public void handleWin(int winner) {
+        if (winner == 1) {
+            board.setBackground(Color.BLACK);
+            setTitle("Black Wins!");
+        } else if (winner == 2) {
+            board.setBackground(Color.WHITE);
+            setTitle("White Wins!");
+        }
+        System.out.println(winner);
+        disableButtons();
     }
 
     public void disableButtons() {

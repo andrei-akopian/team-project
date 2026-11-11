@@ -24,6 +24,6 @@ public class Game {
     }
 
     public Board getBoard(){
-        return board;
+        return board.copy();
     }
 }
