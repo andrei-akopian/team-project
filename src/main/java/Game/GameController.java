@@ -11,4 +11,8 @@ public class GameController {
         final Move loginInputData = new Move(row, col);
         gameInteractor.execute(loginInputData);
     }
+
+    public void undo() {
+        gameInteractor.undo();
+    }
 }

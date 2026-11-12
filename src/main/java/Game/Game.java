@@ -19,6 +19,9 @@ public class Game {
             turn = 1;
         }
     }
+    public void undo(){
+        board.undo();
+    };
     public int getWinner(){
         return board.getWinner();
     }

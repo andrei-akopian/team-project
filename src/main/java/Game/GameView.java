@@ -27,6 +27,11 @@ public class GameView extends JFrame implements GameViewModelListener {
         JPanel container = new JPanel(new GridBagLayout());
 
         container.add(board);
+        JButton undobutton = new JButton("Undo");
+        undobutton.addActionListener(e -> {
+            gameController.undo();
+        });
+        container.add(undobutton);
 
         add(container);
 
@@ -61,9 +66,20 @@ public class GameView extends JFrame implements GameViewModelListener {
             }
         }
     }
+
+    public void setBoard(int[][] board) {
+        for (int row = 0; row < BOARD_SIZE; row++) {
+            for (int col = 0; col < BOARD_SIZE; col++) {
+                updateBoard(row, col, board[row][col], 0);
+            }
+        }
+    }
+
     public void updateBoard(int row, int col, int player, int winner) {
 
-        if (player == 1) {
+        if (player == 0) {
+            return;
+        } else if (player == 1) {
             buttons[row][col].setBackground(Color.BLACK);
         } else if (player == 2) {
             buttons[row][col].setBackground(Color.WHITE);
@@ -102,7 +118,6 @@ public class GameView extends JFrame implements GameViewModelListener {
     }
 
     public static void main(String[] args) {
-
         SwingUtilities.invokeLater(() -> {
 
             GameViewModel gameViewModel = new GameViewModel();

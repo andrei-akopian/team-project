@@ -102,9 +102,11 @@ public class Board {
     }
 
     public void undo(){
-        Move lastmove = moves.remove(moves.size()-1);
-        winner = 0;
-        boardState[lastmove.row][lastmove.column] = 0;
+        if (!moves.isEmpty()){
+            Move lastmove = moves.remove(moves.size()-1);
+            winner = 0;
+            boardState[lastmove.row][lastmove.column] = 0;
+        }
     }
 
   /**

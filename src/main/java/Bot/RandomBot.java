@@ -5,10 +5,9 @@ import Game.Move;
 
 import java.util.Random;
 
-public class RandomBot implements Bot {
-  int playerid;
+public class RandomBot extends BaseBot {
   public RandomBot(int playerid) {
-    this.playerid = playerid;
+    super(playerid);
   }
 
   @Override
@@ -28,10 +27,5 @@ public class RandomBot implements Bot {
     int row = randomInt(0, board_size);
     int column = randomInt(0, board_size);
     return new Move(row, column);
-  }
-
-  @Override
-  public int getPlayerId() {
-    return playerid;
   }
 }
