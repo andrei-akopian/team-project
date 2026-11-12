@@ -10,8 +10,7 @@ public class GamePresenter implements GameOutputBoundary {
 
     @Override
     public void prepareView(GameOutputData response) {
-
-       gameViewModel.setValues(response.getRow(),response.getColumn(),response.getPlayer(),response.getWinner());
+       gameViewModel.setValues(response.getRow(), response.getColumn(), response.getPlayer(), response.getWinner());
        gameViewModel.updateBoard();
     }
 }

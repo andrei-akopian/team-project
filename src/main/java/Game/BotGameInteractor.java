@@ -1,7 +1,8 @@
 package Game;
 
 import Bot.Bot;
-import Bot.SlowBot;
+import Bot.ReactiveBot;
+import Bot.StrategicBot;
 import java.util.concurrent.TimeUnit;
 
 public class BotGameInteractor implements GameInputBoundary {
@@ -11,7 +12,7 @@ public class BotGameInteractor implements GameInputBoundary {
   public BotGameInteractor(GameOutputBoundary gamePresenter) {
     this.gamePresenter = gamePresenter;
     this.game = new Game();
-    this.bot = new SlowBot(2);
+    this.bot = new StrategicBot(2);
   }
 
   @Override
@@ -43,6 +44,24 @@ public class BotGameInteractor implements GameInputBoundary {
     game.playerInput(move);
     final int winner = game.getWinner();
     final GameOutputData gameOutputData = new GameOutputData(move.row, move.column, player, winner);
+    gamePresenter.prepareView(gameOutputData);
+  }
+
+  @Override
+  public void undo() {
+    // bot move
+    Move undonemove = game.undo();
+    if (undonemove == null) {
+      return;
+    }
+    GameOutputData gameOutputData = new GameOutputData(undonemove.row, undonemove.column, 0, 0);
+    gamePresenter.prepareView(gameOutputData);
+    // player move
+    undonemove = game.undo(); // player move
+    if (undonemove == null) {
+      return;
+    }
+    gameOutputData = new GameOutputData(undonemove.row, undonemove.column, 0, 0);
     gamePresenter.prepareView(gameOutputData);
   }
 }

@@ -3,12 +3,11 @@ package Bot;
 import Game.Board;
 import Game.Move;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
-public class RandomBot implements Bot {
-  int playerid;
+public class RandomBot extends BaseBot {
   public RandomBot(int playerid) {
-    this.playerid = playerid;
+    super(playerid);
   }
 
   @Override
@@ -21,17 +20,12 @@ public class RandomBot implements Bot {
   }
 
   private static int randomInt(int min, int max){
-    return new Random().nextInt(max - min) + min;
+    return new SecureRandom().nextInt(max - min) + min;
   }
 
   private static Move randomMove(int board_size){
     int row = randomInt(0, board_size);
     int column = randomInt(0, board_size);
     return new Move(row, column);
-  }
-
-  @Override
-  public int getPlayerId() {
-    return playerid;
   }
 }
