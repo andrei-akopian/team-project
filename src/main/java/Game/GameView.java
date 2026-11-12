@@ -4,11 +4,13 @@ package Game;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.geom.Line2D;
 
 public class GameView extends JFrame implements GameViewModelListener {
     private final int BOARD_SIZE = AppConfig.getInt("board_size");
     private JButton[][] buttons = new JButton[BOARD_SIZE][BOARD_SIZE];
     private JPanel board;
+    private DrawingPanel drawingpanel;
 
     private GameController gameController;
     private final GameViewModel gameViewModel;
@@ -20,17 +22,30 @@ public class GameView extends JFrame implements GameViewModelListener {
         setTitle("Five in a Row");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setPreferredSize(new Dimension(800, 800));
+        layeredPane.setOpaque(false);
+
         board = new JPanel(new GridLayout(BOARD_SIZE, BOARD_SIZE));
         populateBoardButtons();
-        board.setPreferredSize(new Dimension(800, 800));
+        board.setBounds(0, 0, 800, 800);
+        board.setOpaque(false);
 
         JPanel container = new JPanel(new GridBagLayout());
 
-        container.add(board);
+        drawingpanel = new DrawingPanel();
+        drawingpanel.setOpaque(false);
+        drawingpanel.setBounds(0, 0, 800, 800);
+        drawingpanel.setBackground(new Color(0, 0, 0, 0));
+
         JButton undobutton = new JButton("Undo");
         undobutton.addActionListener(e -> {
             gameController.undo();
         });
+
+        layeredPane.add(board, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(drawingpanel, JLayeredPane.PALETTE_LAYER);
+        container.add(layeredPane);
         container.add(undobutton);
 
         add(container);
@@ -82,6 +97,8 @@ public class GameView extends JFrame implements GameViewModelListener {
 
         buttons[row][col].setOpaque(true);
         buttons[row][col].setEnabled(false);
+
+        drawingpanel.repaint();
 
         if (winner != 0){
             handleWin(winner);
