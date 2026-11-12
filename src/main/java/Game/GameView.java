@@ -67,17 +67,12 @@ public class GameView extends JFrame implements GameViewModelListener {
         }
     }
 
-    public void setBoard(int[][] board) {
-        for (int row = 0; row < BOARD_SIZE; row++) {
-            for (int col = 0; col < BOARD_SIZE; col++) {
-                updateBoard(row, col, board[row][col], 0);
-            }
-        }
-    }
-
     public void updateBoard(int row, int col, int player, int winner) {
 
         if (player == 0) {
+            buttons[row][col].setBackground(new Color(255, 228, 163));
+            buttons[row][col].setOpaque(false);
+            buttons[row][col].setEnabled(true);
             return;
         } else if (player == 1) {
             buttons[row][col].setBackground(Color.BLACK);

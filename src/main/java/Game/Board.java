@@ -100,12 +100,14 @@ public class Board {
         return max == WIN_THRESHOLD;
     }
 
-    public void undo(){
+    public Move undo(){
         if (!moves.isEmpty()){
             Move lastmove = moves.remove(moves.size()-1);
             winner = 0;
             boardState[lastmove.row][lastmove.column] = 0;
+            return lastmove;
         }
+        return null;
     }
 
   /**
