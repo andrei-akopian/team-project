@@ -27,7 +27,7 @@ public class Game {
         if (undonemove != null) {
             flipTurn();
         }
-        return null;
+        return undonemove;
     };
     public int getWinner(){
         return board.getWinner();
