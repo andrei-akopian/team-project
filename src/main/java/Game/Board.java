@@ -1,5 +1,4 @@
 package Game;
-import Game.Move;
 
 import java.util.ArrayList;
 
@@ -41,12 +40,12 @@ public class Board {
         return getTile(move.row, move.column);
     }
 
-    public boolean isTileEmpty(int row, int column) {
+    public boolean tileIsEmpty(int row, int column) {
         return boardState[row][column] == 0;
     }
 
-    public boolean isTileEmpty(Move move) {
-        return isTileEmpty(move.row, move.column);
+    public boolean tileIsEmpty(Move move) {
+        return tileIsEmpty(move.row, move.column);
     }
 
     public boolean makeMove(Move move, int player){

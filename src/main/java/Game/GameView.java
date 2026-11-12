@@ -101,7 +101,6 @@ public class GameView extends JFrame implements GameViewModelListener {
             board.setBackground(Color.WHITE);
             setTitle("White Wins!");
         }
-        System.out.println(winner);
         disableButtons();
     }
 

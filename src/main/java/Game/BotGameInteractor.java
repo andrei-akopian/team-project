@@ -2,6 +2,7 @@ package Game;
 
 import Bot.Bot;
 import Bot.ReactiveBot;
+import Bot.StrategicBot;
 import java.util.concurrent.TimeUnit;
 
 public class BotGameInteractor implements GameInputBoundary {
@@ -11,7 +12,7 @@ public class BotGameInteractor implements GameInputBoundary {
   public BotGameInteractor(GameOutputBoundary gamePresenter) {
     this.gamePresenter = gamePresenter;
     this.game = new Game();
-    this.bot = new ReactiveBot(2);
+    this.bot = new StrategicBot(2);
   }
 
   @Override

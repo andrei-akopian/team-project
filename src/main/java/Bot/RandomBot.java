@@ -3,7 +3,7 @@ package Bot;
 import Game.Board;
 import Game.Move;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class RandomBot extends BaseBot {
   public RandomBot(int playerid) {
@@ -20,7 +20,7 @@ public class RandomBot extends BaseBot {
   }
 
   private static int randomInt(int min, int max){
-    return new Random().nextInt(max - min) + min;
+    return new SecureRandom().nextInt(max - min) + min;
   }
 
   private static Move randomMove(int board_size){
