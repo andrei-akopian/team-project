@@ -20,7 +20,7 @@ public class BotGameInteractor implements GameInputBoundary {
     final int player = game.getTurn();
     game.playerInput(move);
     final int winner = game.getWinner();
-    final GameOutputData gameOutputData = new GameOutputData(move.row, move.column,player,winner);
+    final GameOutputData gameOutputData = new GameOutputData(move.column,move.row, player, winner);
     gamePresenter.prepareView(gameOutputData);
     if (winner != 0) {
       return;

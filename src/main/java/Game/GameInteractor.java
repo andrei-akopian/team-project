@@ -20,7 +20,7 @@ public class GameInteractor implements GameInputBoundary {
     @Override
     public void undo() {
         Move undonemove = game.undo();
-        GameOutputData gameOutputData = new GameOutputData(undonemove.row, undonemove.column, 0, 0);
+        GameOutputData gameOutputData = new GameOutputData(undonemove.column, undonemove.row, game.getTurn(), game.getWinner());
         gamePresenter.prepareView(gameOutputData);
     }
 }
