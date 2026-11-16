@@ -4,7 +4,6 @@ package Game;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.geom.Line2D;
 
 public class GameView extends JFrame implements GameViewModelListener {
     private final int BOARD_SIZE = AppConfig.getInt("board_size");
@@ -81,38 +80,24 @@ public class GameView extends JFrame implements GameViewModelListener {
             }
         }
     }
+    public void onBoardUpdated(GameViewModel gameViewModel) {
 
-    public void updateBoard(int row, int col, int player, int winner) {
-        if (player == 0) {
-            buttons[row][col].setBackground(new Color(255, 228, 163));
-            buttons[row][col].setOpaque(true);
-            buttons[row][col].setContentAreaFilled(true);
-            buttons[row][col].setEnabled(true);
-            return;
-        } else if (player == 1) {
-            buttons[row][col].setBackground(Color.BLACK);
-        } else if (player == 2) {
-            buttons[row][col].setBackground(Color.WHITE);
-        }
+        JButton button = buttons[gameViewModel.getColumn()][gameViewModel.getRow()];
+        button.setBackground(gameViewModel.getColor());
+        button.setOpaque(true);
+        button.setEnabled(false);
 
-        buttons[row][col].setOpaque(true);
-        buttons[row][col].setEnabled(false);
-
-        drawingpanel.repaint();
-
-        if (winner != 0){
-            handleWin(winner);
+        if (gameViewModel.getWinner() != 0){
+            handleWin(gameViewModel);
         }
     }
 
-    public void handleWin(int winner) {
-        if (winner == 1) {
-            board.setBackground(Color.BLACK);
-            setTitle("Black Wins!");
-        } else if (winner == 2) {
-            board.setBackground(Color.WHITE);
-            setTitle("White Wins!");
-        }
+    public void handleWin(GameViewModel gameViewModel) {
+        Color color = gameViewModel.getColor();
+        String text = gameViewModel.getStatusMessage();
+        board.setBackground(color);
+        setTitle(text);
+        System.out.println(text);
         disableButtons();
     }
 
@@ -129,6 +114,7 @@ public class GameView extends JFrame implements GameViewModelListener {
     }
 
     public static void main(String[] args) {
+
         SwingUtilities.invokeLater(() -> {
 
             GameViewModel gameViewModel = new GameViewModel();
