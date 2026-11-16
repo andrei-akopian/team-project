@@ -82,37 +82,33 @@ public class GameView extends JFrame implements GameViewModelListener {
         }
     }
 
-    public void updateBoard(int row, int col, int player, int winner) {
+    public void onBoardUpdated(GameViewModel gameViewModel) {
+        JButton button = buttons[gameViewModel.getRow()][gameViewModel.getColumn()];
+        button.setBackground(gameViewModel.getColor());
+        int player = gameViewModel.getPlayer();
         if (player == 0) {
-            buttons[row][col].setBackground(new Color(255, 228, 163));
-            buttons[row][col].setOpaque(true);
-            buttons[row][col].setContentAreaFilled(true);
-            buttons[row][col].setEnabled(true);
+            button.setOpaque(true);
+            button.setContentAreaFilled(true);
+            button.setEnabled(true);
             return;
-        } else if (player == 1) {
-            buttons[row][col].setBackground(Color.BLACK);
-        } else if (player == 2) {
-            buttons[row][col].setBackground(Color.WHITE);
         }
 
-        buttons[row][col].setOpaque(true);
-        buttons[row][col].setEnabled(false);
+        button.setOpaque(true);
+        button.setEnabled(false);
 
         drawingpanel.repaint();
 
-        if (winner != 0){
-            handleWin(winner);
+        if (gameViewModel.getWinner() != 0){
+            handleWin(gameViewModel);
         }
     }
 
-    public void handleWin(int winner) {
-        if (winner == 1) {
-            board.setBackground(Color.BLACK);
-            setTitle("Black Wins!");
-        } else if (winner == 2) {
-            board.setBackground(Color.WHITE);
-            setTitle("White Wins!");
-        }
+    public void handleWin(GameViewModel gameViewModel) {
+        Color color = gameViewModel.getColor();
+        String text = gameViewModel.getStatusMessage();
+        board.setBackground(color);
+        setTitle(text);
+        System.out.println(text);
         disableButtons();
     }
 
