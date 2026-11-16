@@ -10,4 +10,9 @@ public class Move {
   public Move copy(){
     return new Move(this.row, this.column);
   }
+
+  @Override
+  public String toString() {
+     return "Move("+row+","+column+")";
+  }
 }

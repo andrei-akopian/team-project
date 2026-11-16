@@ -1,8 +1,4 @@
-
-Page
-2
-of 2
-# Project Name
+# Five In A Row Game
 ## Team Information
 ### Team Members
 - Andrew Zhang
@@ -10,13 +6,13 @@ of 2
 - Yuehan Gao
 - Andrei Akopian
 - Jean Huang
+
 ---
 ## Project Description
 ### Game
 
 Five in a row game, where the goal is to get 5 in a row on a 20x20 board (similar to tic tac toe).
 
-[Project description]
 ---
 ## User Stories
 ### User Story 1: As a player I want to be able to sign up and create an account and log in to my account to save my settings and history
@@ -25,6 +21,7 @@ Five in a row game, where the goal is to get 5 in a row on a 20x20 board (simila
 ### User Story 4: As a player I want to be able to play against a computer to have fun and get better at the game
 ### User Story 5: As a beginner player, I want to interact with a tutorial, so I can learn how to play the game
 (Add additional user stories as needed.)
+
 ---
 ## Use Cases
 ### 1. Login/logout/signup
@@ -36,6 +33,7 @@ Five in a row game, where the goal is to get 5 in a row on a 20x20 board (simila
 ### 7. View Tutorial
 
 (Add additional use cases as needed.)
+
 ---
 ## Minimal Viable Product (MVP)
 | Team Member | MVP Use Case |
@@ -45,20 +43,27 @@ Five in a row game, where the goal is to get 5 in a row on a 20x20 board (simila
 | Saiesh      | 7            |
 | Yuehan      | 3, 4         |
 | Jean        | 1, 2         |
+
 ---
 ## Entities
 ### Game (handles game logic, such as whos turn it is, and manages the board)
 ### Board (handles game logic, such as checking for wins)
 (Add additional entities as needed.)
+
 ---
 ## API Usage
 **API Name:**
 **Documentation:** [Link]
 **How it is used in the program:**
+
 ---
 ## Design Diagrams
+
+[Clean Architecture Diagram](https://ca-visualizer-for-education.github.io/cave-learn/diagram) for reference.
+
 ### UML Class Diagram
 ### Sequence Diagrams
+
 ---
 ## How to Run
 [Instructions for running the program.]
