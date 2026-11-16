@@ -65,7 +65,6 @@ public class GameView extends JFrame implements GameViewModelListener {
 
         JButton button = buttons[gameViewModel.getColumn()][gameViewModel.getRow()];
         button.setBackground(gameViewModel.getColor());
-
         button.setOpaque(true);
         button.setEnabled(false);
 
@@ -105,7 +104,7 @@ public class GameView extends JFrame implements GameViewModelListener {
             GamePresenter presenter = new GamePresenter(gameViewModel);
 
             GameInputBoundary interactor =
-                    new GameInteractor(presenter);
+                    new BotGameInteractor(presenter);
 
             GameController controller =
                     new GameController(interactor);
