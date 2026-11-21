@@ -15,8 +15,4 @@ public class Move {
   public String toString() {
      return "Move("+row+","+column+")";
   }
-
-  public int getRow(){ return row; }
-
-  public int getColumn(){ return column; }
 }

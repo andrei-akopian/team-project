@@ -4,39 +4,31 @@ import Game.*;
 import javax.swing.*;
 
 public class Puzzle {
-    private final Board start;
+    private final String name;
+    private final String level;
+    private final Move[] start;
     private final Move[] moves;
-    public Puzzle(Board start, Move[] moves) {
+
+    public Puzzle(String name, String level, Move[] start, Move[] moves) {
         this.start = start;
         this.moves = moves;
+        this.name = name;
+        this.level = level;
     }
-    public Board getStart() {
-        return start.copy();
+
+    public Move[] getStart() {
+        return start.clone();
     }
+
     public Move[] getMoves() {
         return moves.clone();
     }
 
-    static void main() {
-        SwingUtilities.invokeLater(() -> {
+    public String getName() {
+        return name;
+    }
 
-            GameViewModel gameViewModel = new GameViewModel();
-            GameView view = new GameView(gameViewModel);
-
-            GamePresenter presenter = new GamePresenter(gameViewModel);
-
-            GameInputBoundary interactor =
-                    new GameInteractor(presenter);
-
-            GameController controller =
-                    new GameController(interactor);
-
-            view.setController(controller);
-            for(int i = 0; i < 4; i++){
-                controller.execute(i, 7);
-                controller.execute(i, 8);
-            }
-            view.setVisible(true);
-        });
+    public String getLevel() {
+        return level;
     }
 }

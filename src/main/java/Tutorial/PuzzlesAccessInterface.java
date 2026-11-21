@@ -1,5 +1,8 @@
 package Tutorial;
 
+import java.util.List;
+import java.util.Map;
+
 public interface PuzzlesAccessInterface {
-    public Puzzle getPuzzle(String name);
+    Map<String, List<Puzzle>> getPuzzles();
 }
