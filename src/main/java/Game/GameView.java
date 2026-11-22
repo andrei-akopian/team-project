@@ -20,7 +20,7 @@ public class GameView extends JFrame implements GameViewModelListener {
         this.gameViewModel.addListener(this);
         gameController = null;
         setTitle("Five in a Row");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(800, 800));

@@ -10,7 +10,7 @@ public class Board {
     private ArrayList<Move> moves;
     /*
     0 is no player / empty tile
-    >1 means there is a player move at that tile
+    1 means there is a player 1 stone at that tile, 2 means there is a player 2 stone at that tile.
     */
 
     public Board(){
