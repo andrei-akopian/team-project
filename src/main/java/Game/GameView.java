@@ -11,6 +11,8 @@ public class GameView extends JFrame implements GameViewModelListener {
     private JButton[][] buttons = new JButton[BOARD_SIZE][BOARD_SIZE];
     private JPanel board;
     private DrawingPanel drawingpanel;
+    private JButton undobutton;
+    private JPanel container;
 
     private GameController gameController;
     private final GameViewModel gameViewModel;
@@ -31,14 +33,14 @@ public class GameView extends JFrame implements GameViewModelListener {
         board.setBounds(0, 0, 800, 800);
         board.setOpaque(false);
 
-        JPanel container = new JPanel(new GridBagLayout());
+        container = new JPanel(new GridBagLayout());
 
         drawingpanel = new DrawingPanel();
         drawingpanel.setOpaque(false);
         drawingpanel.setBounds(0, 0, 800, 800);
         drawingpanel.setBackground(new Color(0, 0, 0, 0));
 
-        JButton undobutton = new JButton("Undo");
+        undobutton = new JButton("Undo");
         undobutton.addActionListener(e -> {
             gameController.undo();
         });
@@ -47,7 +49,7 @@ public class GameView extends JFrame implements GameViewModelListener {
         layeredPane.add(drawingpanel, JLayeredPane.PALETTE_LAYER);
         container.add(layeredPane);
         container.add(undobutton);
-
+        container.setBackground(new Color(60,60,60));
         add(container);
 
         pack();
@@ -85,6 +87,7 @@ public class GameView extends JFrame implements GameViewModelListener {
     public void onBoardUpdated(GameViewModel gameViewModel) {
         JButton button = buttons[gameViewModel.getRow()][gameViewModel.getColumn()];
         button.setBackground(gameViewModel.getColor());
+
         int player = gameViewModel.getPlayer();
         if (player == 0) {
             button.setOpaque(true);
@@ -100,6 +103,12 @@ public class GameView extends JFrame implements GameViewModelListener {
 
         if (gameViewModel.getWinner() != 0){
             handleWin(gameViewModel);
+        }
+        else if (player == 1) {
+            container.setBackground(new Color(255,255,255));
+        }
+        else{
+            container.setBackground(new Color(60,60,60));
         }
     }
 
@@ -118,6 +127,8 @@ public class GameView extends JFrame implements GameViewModelListener {
                 button.setEnabled(false);
             }
         }
+        undobutton.setEnabled(false);
+
     }
 
     public void setController(GameController gameController){
@@ -133,7 +144,7 @@ public class GameView extends JFrame implements GameViewModelListener {
             GamePresenter presenter = new GamePresenter(gameViewModel);
 
             GameInputBoundary interactor =
-                    new BotGameInteractor(presenter);
+                    new GameInteractor(presenter);
 
             GameController controller =
                     new GameController(interactor);
