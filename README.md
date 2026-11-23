@@ -11,15 +11,15 @@
 ## Project Description
 ### Game
 
-Five in a row game, where the goal is to get 5 in a row on a 20x20 board (similar to tic tac toe).
+Five in a row game, where the goal is to get exactly 5 in a row on a 15x15 board (similar to tic tac toe).
 
 ---
 ## User Stories
-### User Story 1: As a player I want to be able to sign up and create an account and log in to my account to save my settings and history
-### User Story 2: As a player I want to see my match history to see how well I am playing and review a replay of the games move by move
-### User Story 3: As a player I want to be able to play against my friend sitting next to me to spend time with them
-### User Story 4: As a player I want to be able to play against a computer to have fun and get better at the game
-### User Story 5: As a beginner player, I want to interact with a tutorial, so I can learn how to play the game
+### User Story 1: As a player, I want to be able to sign up and create an account and log in to my account to save my settings and history.
+### User Story 2: As a player, I want to see my match history to know how well I am playing and review a move-by-move replay of my past games.
+### User Story 3: As a player, I want to be able to play against my friend sitting next to me to spend time with them.
+### User Story 4: As a player, I want to be able to play against a computer to have fun and get better at the game.
+### User Story 5: As a beginner player, I want to interact with a tutorial to learn how to play the game.
 (Add additional user stories as needed.)
 
 ---
@@ -30,7 +30,7 @@ Five in a row game, where the goal is to get 5 in a row on a 20x20 board (simila
 ### 4. View replay
 ### 5. Playing a game
 ### 6. Computer player making a move
-### 7. View Tutorial
+### 7. Use Tutorial
 
 (Add additional use cases as needed.)
 
@@ -48,6 +48,7 @@ Five in a row game, where the goal is to get 5 in a row on a 20x20 board (simila
 ## Entities
 ### Game (handles game logic, such as whos turn it is, and manages the board)
 ### Board (handles game logic, such as checking for wins)
+### Puzzle (contains information which defines the setup and solution of a puzzle for the tutorial)
 (Add additional entities as needed.)
 
 ---
