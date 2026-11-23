@@ -1,8 +1,7 @@
-package Bot;
+package Game.entities.Bot;
 
-import Game.Board;
-import Game.BoardAnalyzer;
-import Game.Move;
+import Game.entities.Board;
+import Game.use_cases.Move;
 
 /**
  * Strategic Bot uses a list of common strategies:

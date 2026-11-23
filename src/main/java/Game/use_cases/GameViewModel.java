@@ -1,4 +1,6 @@
-package Game;
+package Game.use_cases;
+
+import Menus.GameViewModelListener;
 
 import java.awt.Color;
 import java.util.ArrayList;

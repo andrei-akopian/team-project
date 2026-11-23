@@ -1,10 +1,23 @@
-package Game;
+package Menus;
 
 
-import javax.swing.*;
+import Game.interface_adapters.DrawingPanel;
+import Game.interface_adapters.GameController;
+import Game.use_cases.GameInputBoundary;
+import Game.use_cases.GameInteractor;
+import Game.use_cases.GamePresenter;
+import Game.use_cases.GameViewModel;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLayeredPane;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
-import java.awt.*;
-import java.awt.geom.Line2D;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 
 public class GameView extends JFrame implements GameViewModelListener {
     private final int BOARD_SIZE = AppConfig.getInt("board_size");
@@ -49,17 +62,17 @@ public class GameView extends JFrame implements GameViewModelListener {
         layeredPane.add(drawingpanel, JLayeredPane.PALETTE_LAYER);
         container.add(layeredPane);
         container.add(undobutton);
-        container.setBackground(new Color(60,60,60));
+        container.setBackground(new Color(60, 60, 60));
         add(container);
 
         pack();
-        setSize(1000,1000);
+        setSize(1000, 1000);
 
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    public void populateBoardButtons () {
+    public void populateBoardButtons() {
         for (int row = 0; row < BOARD_SIZE; row++) {
             for (int col = 0; col < BOARD_SIZE; col++) {
                 JButton button = new JButton();
@@ -101,14 +114,12 @@ public class GameView extends JFrame implements GameViewModelListener {
 
         drawingpanel.repaint();
 
-        if (gameViewModel.getWinner() != 0){
+        if (gameViewModel.getWinner() != 0) {
             handleWin(gameViewModel);
-        }
-        else if (player == 1) {
-            container.setBackground(new Color(255,255,255));
-        }
-        else{
-            container.setBackground(new Color(60,60,60));
+        } else if (player == 1) {
+            container.setBackground(new Color(255, 255, 255));
+        } else {
+            container.setBackground(new Color(60, 60, 60));
         }
     }
 
@@ -122,8 +133,8 @@ public class GameView extends JFrame implements GameViewModelListener {
     }
 
     public void disableButtons() {
-        for (JButton[] buttons_row:buttons){
-            for (JButton button: buttons_row){
+        for (JButton[] buttons_row : buttons) {
+            for (JButton button : buttons_row) {
                 button.setEnabled(false);
             }
         }
@@ -131,7 +142,7 @@ public class GameView extends JFrame implements GameViewModelListener {
 
     }
 
-    public void setController(GameController gameController){
+    public void setController(GameController gameController) {
         this.gameController = gameController;
     }
 

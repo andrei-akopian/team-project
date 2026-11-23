@@ -1,6 +1,6 @@
 package Tutorial;
 
-import javax.swing.*;
+import javax.swing.SwingUtilities;
 
 public class Main {
     static void main() {

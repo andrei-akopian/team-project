@@ -1,5 +1,9 @@
 package Tutorial;
-import Game.*;
+import Game.entities.Game;
+import Game.use_cases.GameInputBoundary;
+import Game.use_cases.GameOutputBoundary;
+import Game.use_cases.GameOutputData;
+import Game.use_cases.Move;
 
 public class PuzzlesInteractor implements GameInputBoundary {
     private final Game game = new Game();

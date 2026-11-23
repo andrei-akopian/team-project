@@ -1,4 +1,7 @@
-package Game;
+package Game.entities.Bot;
+
+import Game.use_cases.Move;
+import Game.entities.Board;
 
 import java.util.ArrayList;
 

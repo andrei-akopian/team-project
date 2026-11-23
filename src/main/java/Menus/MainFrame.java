@@ -1,61 +1,64 @@
 package Menus;
 
-import Game.*;
-
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.SwingUtilities;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.GridLayout;
 
 public class MainFrame extends JFrame {
 
-  private CardLayout cardLayout;
-  private JPanel contentPanel;
+    private CardLayout cardLayout;
+    private JPanel contentPanel;
 
-  public MainFrame() {
-    setTitle("My Application");
-    setSize(1000, 1000);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setLocationRelativeTo(null);
+    public MainFrame() {
+        setTitle("My Application");
+        setSize(1000, 1000);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
-    cardLayout = new CardLayout();
-    contentPanel = new JPanel(cardLayout);
+        cardLayout = new CardLayout();
+        contentPanel = new JPanel(cardLayout);
 
-    contentPanel.add(new LoginView(), "LOGINVIEW");
-    contentPanel.add(new PlayMenuView(), "PLAYMENUVIEW");
+        contentPanel.add(new LoginView(), "LOGINVIEW");
+        contentPanel.add(new PlayMenuView(), "PLAYMENUVIEW");
 
-    add(createNavigationPanel(), BorderLayout.WEST);
-    add(contentPanel, BorderLayout.CENTER);
+        add(createNavigationPanel(), BorderLayout.WEST);
+        add(contentPanel, BorderLayout.CENTER);
 
-    showView("LOGINVIEW");
-  }
+        showView("LOGINVIEW");
+    }
 
-  public void showView(String viewName) {
-    cardLayout.show(contentPanel, viewName);
-  }
+    public void showView(String viewName) {
+        cardLayout.show(contentPanel, viewName);
+    }
 
-  private JPanel createNavigationPanel() {
-    JPanel panel = new JPanel();
+    private JPanel createNavigationPanel() {
+        JPanel panel = new JPanel();
 
-    JButton loginviewButton = new JButton("Login View");
-    JButton playmenuviewButton = new JButton("Play Menu View");
+        JButton loginviewButton = new JButton("Login View");
+        JButton playmenuviewButton = new JButton("Play Menu View");
 
-    loginviewButton.addActionListener(
-            e -> showView("LOGIN VIEW")
-    );
-    playmenuviewButton.addActionListener(
-            e -> showView("PLAYMENUVIEW")
-    );
+        loginviewButton.addActionListener(
+                e -> showView("LOGIN VIEW")
+        );
+        playmenuviewButton.addActionListener(
+                e -> showView("PLAYMENUVIEW")
+        );
 
-    panel.setLayout(new GridLayout(0, 1));
-    panel.add(loginviewButton);
-    panel.add(playmenuviewButton);
+        panel.setLayout(new GridLayout(0, 1));
+        panel.add(loginviewButton);
+        panel.add(playmenuviewButton);
 
-    return panel;
-  }
+        return panel;
+    }
 
-  public static void main(String[] args) {
-    SwingUtilities.invokeLater(() -> {
-      MainFrame frame = new MainFrame();
-      frame.setVisible(true);
-    });
-  }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            MainFrame frame = new MainFrame();
+            frame.setVisible(true);
+        });
+    }
 }
