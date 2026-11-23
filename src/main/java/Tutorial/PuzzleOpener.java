@@ -1,9 +1,9 @@
 package Tutorial;
 
-import Game.GameController;
-import Game.GamePresenter;
-import Game.GameView;
-import Game.GameViewModel;
+import Game.interface_adapters.GameController;
+import Game.use_cases.GamePresenter;
+import Menus.GameView;
+import Game.use_cases.GameViewModel;
 
 public class PuzzleOpener {
     public void open(Puzzle puzzle){

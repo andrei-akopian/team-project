@@ -1,4 +1,4 @@
-package Game;
+package Game.use_cases;
 
 import java.awt.Color;
 

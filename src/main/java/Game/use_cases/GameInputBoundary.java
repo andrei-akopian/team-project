@@ -1,4 +1,4 @@
-package Game;
+package Game.use_cases;
 
 public interface GameInputBoundary {
     public void execute(Move move);

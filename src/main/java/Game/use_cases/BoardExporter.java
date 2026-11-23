@@ -1,9 +1,6 @@
-package Game;
-import Game.Board;
-import Game.Move;
+package Game.use_cases;
+import Game.entities.Board;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 
 import java.util.ArrayList;
 

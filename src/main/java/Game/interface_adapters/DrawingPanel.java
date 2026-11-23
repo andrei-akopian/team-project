@@ -1,4 +1,4 @@
-package Game;
+package Game.interface_adapters;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,6 @@
-package Game;
+package Game.entities;
+
+import Game.use_cases.Move;
 
 public class Game {
     private int turn;

@@ -1,4 +1,4 @@
-package Game;
+package Menus;
 
 import java.io.IOException;
 import java.io.InputStream;

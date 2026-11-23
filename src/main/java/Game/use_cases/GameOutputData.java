@@ -1,4 +1,4 @@
-package Game;
+package Game.use_cases;
 
 public class GameOutputData {
     private final int row;

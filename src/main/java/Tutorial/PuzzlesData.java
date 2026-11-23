@@ -1,6 +1,6 @@
 package Tutorial;
 
-import Game.Move;
+import Game.use_cases.Move;
 import java.util.*;
 
 public class PuzzlesData implements PuzzlesAccessInterface {

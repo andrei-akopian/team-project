@@ -1,10 +1,16 @@
-package Game;
+package Menus;
 
+
+import Game.interface_adapters.DrawingPanel;
+import Game.interface_adapters.GameController;
+import Game.use_cases.GameInputBoundary;
+import Game.use_cases.GameInteractor;
+import Game.use_cases.GamePresenter;
+import Game.use_cases.GameViewModel;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.geom.Line2D;
 
 public class GameView extends JFrame implements GameViewModelListener {
     private final int BOARD_SIZE = AppConfig.getInt("board_size");

@@ -1,4 +1,6 @@
-package Game;
+package Game.use_cases;
+
+import Game.entities.Game;
 
 public class GameInteractor implements GameInputBoundary {
     private final Game game;

@@ -1,4 +1,7 @@
-package Game;
+package Game.entities;
+
+import Menus.AppConfig;
+import Game.use_cases.Move;
 
 import java.util.ArrayList;
 

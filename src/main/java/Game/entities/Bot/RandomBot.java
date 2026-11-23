@@ -1,7 +1,7 @@
-package Bot;
+package Game.entities.Bot;
 
-import Game.Board;
-import Game.Move;
+import Game.entities.Board;
+import Game.use_cases.Move;
 
 import java.security.SecureRandom;
 

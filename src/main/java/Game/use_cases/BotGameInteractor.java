@@ -1,8 +1,9 @@
-package Game;
+package Game.use_cases;
 
-import Bot.Bot;
-import Bot.ReactiveBot;
-import Bot.StrategicBot;
+import Game.entities.Bot.Bot;
+import Game.entities.Bot.StrategicBot;
+import Game.entities.Game;
+
 import java.util.concurrent.TimeUnit;
 
 public class BotGameInteractor implements GameInputBoundary {

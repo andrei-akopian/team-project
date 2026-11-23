@@ -1,4 +1,4 @@
-package Game;
+package Game.use_cases;
 
 public class Move {
   public final int row;

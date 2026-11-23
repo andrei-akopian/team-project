@@ -1,7 +1,7 @@
-package Bot;
+package Game.entities.Bot;
 
-import Game.Board;
-import Game.Move;
+import Game.entities.Board;
+import Game.use_cases.Move;
 
 /**
  * The base class for a bot. It handles everything except making moves.
