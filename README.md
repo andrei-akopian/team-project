@@ -24,13 +24,23 @@ Five in a row game, where the goal is to get exactly 5 in a row on a 15x15 board
 
 ---
 ## Use Cases
-### 1. Login/logout/signup
-### 2. Change settings 
-### 3. View match history
-### 4. View replay
-### 5. Playing a game
-### 6. Computer player making a move
-### 7. Use Tutorial
+### 1. Login/logout/signup and save Changed settings 
+### 2. View match history and replays
+### 3. Playing a game by making moves
+Primary actor: player
+Preconditions: player is in a game and the game is not over
+Trigger: Player wants to play a game
+Success outcome: A move is played and the turn switches
+Main Success Scenario: 
+- Player clicks a cell they wish to make a move on
+- It is checked whether this move is allowed, or if the move is a winning move
+- a succesful move is relayed back to the player
+- The turn is then switched to the other player
+Extensions:
+- if the move is not allowed, nothing happens and the player can try again
+- if the move is a winning move, the player is told they won and they can no longer do anything
+### 4. Play against Computer player making a move
+### 5. Use Tutorial
 
 (Add additional use cases as needed.)
 
@@ -38,11 +48,11 @@ Five in a row game, where the goal is to get exactly 5 in a row on a 15x15 board
 ## Minimal Viable Product (MVP)
 | Team Member | MVP Use Case |
 |-------------|--------------|
-| Andrew      | 5            |
-| Andrei      | 6            |
-| Saiesh      | 7            |
-| Yuehan      | 3, 4         |
-| Jean        | 1, 2         |
+| Andrew      | 3            |
+| Andrei      | 4            |
+| Saiesh      | 5            |
+| Yuehan      | 2.           |
+| Jean        | 1.           |
 
 ---
 ## Entities
