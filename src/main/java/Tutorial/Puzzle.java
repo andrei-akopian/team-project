@@ -1,7 +1,5 @@
 package Tutorial;
-import Game.*;
-
-import javax.swing.*;
+import Game.Move;
 
 public class Puzzle {
     private final String name;

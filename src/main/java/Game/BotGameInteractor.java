@@ -49,6 +49,7 @@ public class BotGameInteractor implements GameInputBoundary {
 
   @Override
   public void undo() {
+    if(game.getWinner() != 0) { return; }
     // bot move
     Move undonemove = game.undo();
     if (undonemove == null) {

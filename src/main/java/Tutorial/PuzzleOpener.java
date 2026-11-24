@@ -1,9 +1,6 @@
 package Tutorial;
 
-import Game.GameController;
-import Game.GamePresenter;
-import Game.GameView;
-import Game.GameViewModel;
+import Game.*;
 
 public class PuzzleOpener {
     public void open(Puzzle puzzle){
