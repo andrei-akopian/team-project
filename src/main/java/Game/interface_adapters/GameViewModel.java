@@ -1,4 +1,6 @@
-package Game;
+package Game.interface_adapters;
+
+import Menus.GameViewModelListener;
 
 import java.awt.Color;
 import java.util.ArrayList;

@@ -1,13 +1,13 @@
 package Tutorial;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import java.awt.BorderLayout;
 import java.util.List;
 import java.util.Map;
 
-public class TutorialView extends JFrame{
+public class TutorialView extends JFrame {
 
-    public TutorialView(Map<String, List<Puzzle>> puzzles){
+    public TutorialView(Map<String, List<Puzzle>> puzzles) {
         setLayout(new BorderLayout());
         setTitle("Tutorial");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

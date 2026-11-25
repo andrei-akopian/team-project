@@ -1,4 +1,7 @@
-package Game;
+package Game.interface_adapters;
+
+import Game.use_cases.GameOutputBoundary;
+import Game.use_cases.GameOutputData;
 
 import java.awt.Color;
 
@@ -15,16 +18,14 @@ public class GamePresenter implements GameOutputBoundary {
         Color color;
         if (response.getPlayer() == 0) {
             color = new Color(255, 228, 163);
-        }
-        else {
+        } else {
             color = (response.getPlayer() == 1) ? Color.BLACK : Color.WHITE;
         }
 
         String message;
         if (response.getWinner() != 0) {
             message = "Player " + response.getWinner() + " wins!";
-        }
-        else{
+        } else {
             message = "";
         }
 

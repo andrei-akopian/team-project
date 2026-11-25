@@ -1,5 +1,9 @@
 package Tutorial;
-import Game.*;
+import Game.entities.Game;
+import Game.use_cases.GameInputBoundary;
+import Game.use_cases.GameOutputBoundary;
+import Game.use_cases.GameOutputData;
+import Game.use_cases.Move;
 
 public class PuzzlesInteractor implements GameInputBoundary {
     private final Game game = new Game();
@@ -38,7 +42,7 @@ public class PuzzlesInteractor implements GameInputBoundary {
 
     @Override
     public void undo() {
-        if(step <= 0 || step == moves.length) { return; }
+        if (step <= 0 || step == moves.length) { return; }
         step -= 2;
         Move undonemove = game.undo();
         GameOutputData gameOutputData = new GameOutputData(undonemove.row, undonemove.column, 0, 0);

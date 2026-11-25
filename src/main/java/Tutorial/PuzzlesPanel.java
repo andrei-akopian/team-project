@@ -1,18 +1,31 @@
 package Tutorial;
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.*;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import java.awt.CardLayout;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class PuzzlesPanel extends JPanel {
     private final PuzzleOpener opener = new PuzzleOpener();
+    private final Map<String, List<Puzzle>> puzzles;
 
-    public PuzzlesPanel(Map<String, List<Puzzle>> puzzles){
+    public PuzzlesPanel(Map<String, List<Puzzle>> puzzles) {
+        this.puzzles = puzzles;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         JLabel title = new JLabel("Puzzles", SwingConstants.CENTER);
-        JTextArea description = new JTextArea("Train to master the game by solving these puzzles!" +
-                " Find the unique optimal winning sequence of moves for black.");
+        JTextArea description = new JTextArea(
+                "Train to master the game by solving these puzzles! "
+                        + "Find the unique optimal winning sequence of moves for black."
+        );
         description.setEditable(false);
         description.setMaximumSize(description.getPreferredSize());
 

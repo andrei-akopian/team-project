@@ -1,39 +1,46 @@
-package Game;
+package Game.entities;
+
+import Game.use_cases.Move;
 
 public class Game {
     private int turn;
     private final Board board;
 
-    public Game(){
+    public Game() {
         board = new Board();
         turn = 1;
     }
-    public int getTurn(){
+
+    public int getTurn() {
         return turn;
     }
-    public void playerInput(Move move){
+
+    public void playerInput(Move move) {
         board.makeMove(move, turn);
         flipTurn();
     }
-    private void flipTurn(){
-        if (turn == 1){
+
+    private void flipTurn() {
+        if (turn == 1) {
             turn = 2;
-        } else if (turn == 2){
+        } else if (turn == 2) {
             turn = 1;
         }
     }
-    public Move undo(){
+
+    public Move undo() {
         Move undonemove = board.undo();
         if (undonemove != null) {
             flipTurn();
         }
         return undonemove;
-    };
-    public int getWinner(){
+    }
+
+    public int getWinner() {
         return board.getWinner();
     }
 
-    public Board getBoard(){
+    public Board getBoard() {
         return board.copy();
     }
 }

@@ -1,5 +1,5 @@
 package Tutorial;
-import Game.Move;
+import Game.use_cases.Move;
 
 public class Puzzle {
     private final String name;

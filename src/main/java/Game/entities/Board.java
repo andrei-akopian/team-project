@@ -1,4 +1,7 @@
-package Game;
+package Game.entities;
+
+import Menus.AppConfig;
+import Game.use_cases.Move;
 
 import java.util.ArrayList;
 
@@ -13,7 +16,7 @@ public class Board {
     1 means there is a player 1 stone at that tile, 2 means there is a player 2 stone at that tile.
     */
 
-    public Board(){
+    public Board() {
         winner = 0;
         moves = new ArrayList<>();
         boardState = new int[BOARD_SIZE][BOARD_SIZE];
@@ -24,11 +27,11 @@ public class Board {
         }
     }
 
-    public boolean inBounds(int row, int column){
+    public boolean inBounds(int row, int column) {
         return (0 <= row && row < BOARD_SIZE && 0 <= column && column < BOARD_SIZE);
     }
 
-    public int getWinner(){
+    public int getWinner() {
         return winner;
     }
 
@@ -48,44 +51,44 @@ public class Board {
         return tileIsEmpty(move.row, move.column);
     }
 
-    public boolean makeMove(Move move, int player){
-        if (player != 1 && player != 2){
+    public boolean makeMove(Move move, int player) {
+        if (player != 1 && player != 2) {
             return false;
         }
-        if (!inBounds(move.row, move.column)){
+        if (!inBounds(move.row, move.column)) {
             return false;
         }
-        if (boardState[move.row][move.column] != 0){
+        if (boardState[move.row][move.column] != 0) {
             return false;
         }
         boardState[move.row][move.column] = player;
-        if (checkWin(move.row, move.column, player)){
+        if (checkWin(move.row, move.column, player)) {
             winner = player;
         }
         moves.add(move);
         return true;
     }
 
-  /**
-   * @param row the players last move
-   * @param column the players last move's column
-   * @param player the player
-   * @return whether player has a winning combination with the specified tile.
-   */
-    public boolean checkWin(int row, int column, int player){
+    /**
+     * @param row    the players last move
+     * @param column the players last move's column
+     * @param player the player
+     * @return whether player has a winning combination with the specified tile.
+     */
+    public boolean checkWin(int row, int column, int player) {
         if (checkDirection(row, column, 0, 1, player) ||
                 checkDirection(row, column, 1, 0, player) ||
                 checkDirection(row, column, 1, 1, player) ||
-                checkDirection(row, column, -1,1, player) ) {
+                checkDirection(row, column, -1, 1, player)) {
             return true;
         }
         return false;
     }
 
-    public boolean checkDirection(int row, int column, int dx, int dy, int player){
+    public boolean checkDirection(int row, int column, int dx, int dy, int player) {
         int counter = 0;
         int max = 0;
-        for(int i = -WIN_THRESHOLD; i <= WIN_THRESHOLD; i++) {
+        for (int i = -WIN_THRESHOLD; i <= WIN_THRESHOLD; i++) {
             if (inBounds(row + i * dx, column + i * dy)) {
                 if (boardState[row + i * dx][column + i * dy] == player) {
                     counter++;
@@ -100,9 +103,9 @@ public class Board {
         return max == WIN_THRESHOLD;
     }
 
-    public Move undo(){
-        if (!moves.isEmpty()){
-            Move lastmove = moves.remove(moves.size()-1);
+    public Move undo() {
+        if (!moves.isEmpty()) {
+            Move lastmove = moves.remove(moves.size() - 1);
             winner = 0;
             boardState[lastmove.row][lastmove.column] = 0;
             return lastmove;
@@ -110,9 +113,9 @@ public class Board {
         return null;
     }
 
-  /**
-   * @return return a copy of move history (mutability safe)
-   */
+    /**
+     * @return return a copy of move history (mutability safe)
+     */
     public ArrayList<Move> getMoveHistory() {
         ArrayList<Move> moves_copy = new ArrayList<>();
         for (Move move : moves) {

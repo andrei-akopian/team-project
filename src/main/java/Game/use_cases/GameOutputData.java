@@ -1,17 +1,19 @@
-package Game;
+package Game.use_cases;
 
 public class GameOutputData {
     private final int row;
     private final int column;
     private final int player;
     private final int winner;
+
     public GameOutputData(int row, int column, int player, int winner) {
         this.row = row;
         this.column = column;
         this.player = player;
         this.winner = winner;
     }
-    public int getRow(){
+
+    public int getRow() {
         return row;
     }
 
