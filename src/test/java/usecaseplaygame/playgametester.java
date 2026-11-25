@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
 
 public class playgametester {
     @Test
-    public void newBoardIsEmptyAndReportsBounds() {
+    public void newBoardIsEmptyAndInBounds() {
         Board board = new Board();
 
         assertTrue(board.inBounds(0, 0));
@@ -175,7 +175,7 @@ public class playgametester {
     }
 
     @Test
-    public void interactorPublishesWinnerAndDoesNotUndoFinishedGame() {
+    public void interactorReturnsWinner() {
         RecordingOutputBoundary output = new RecordingOutputBoundary();
         GameInteractor interactor = new GameInteractor(output);
         for (int column = 0; column < 5; column++) {
