@@ -7,13 +7,12 @@ import java.util.List;
 
 public class PuzzlesPanel extends JPanel {
     private final PuzzleOpener opener = new PuzzleOpener();
-    private final Map<String, List<Puzzle>> puzzles;
 
     public PuzzlesPanel(Map<String, List<Puzzle>> puzzles){
-        this.puzzles = puzzles;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         JLabel title = new JLabel("Puzzles", SwingConstants.CENTER);
-        JTextArea description = new JTextArea("Train to master the game by solving these puzzles! Find the unique optimal winning sequence of moves for black.");
+        JTextArea description = new JTextArea("Train to master the game by solving these puzzles!" +
+                " Find the unique optimal winning sequence of moves for black.");
         description.setEditable(false);
         description.setMaximumSize(description.getPreferredSize());
 
