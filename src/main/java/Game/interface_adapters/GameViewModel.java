@@ -1,4 +1,4 @@
-package Game.use_cases;
+package Game.interface_adapters;
 
 import Menus.GameViewModelListener;
 

@@ -5,8 +5,8 @@ import Game.interface_adapters.DrawingPanel;
 import Game.interface_adapters.GameController;
 import Game.use_cases.GameInputBoundary;
 import Game.use_cases.GameInteractor;
-import Game.use_cases.GamePresenter;
-import Game.use_cases.GameViewModel;
+import Game.interface_adapters.GamePresenter;
+import Game.interface_adapters.GameViewModel;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;

@@ -1,4 +1,7 @@
-package Game.use_cases;
+package Game.interface_adapters;
+
+import Game.use_cases.GameOutputBoundary;
+import Game.use_cases.GameOutputData;
 
 import java.awt.Color;
 

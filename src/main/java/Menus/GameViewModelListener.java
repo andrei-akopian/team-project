@@ -1,6 +1,6 @@
 package Menus;
 
-import Game.use_cases.GameViewModel;
+import Game.interface_adapters.GameViewModel;
 
 public interface GameViewModelListener {
     void onBoardUpdated(GameViewModel gameViewModel);
