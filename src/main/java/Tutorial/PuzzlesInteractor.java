@@ -42,7 +42,7 @@ public class PuzzlesInteractor implements GameInputBoundary {
 
     @Override
     public void undo() {
-        if(step <= 0 || step == moves.length) { return; }
+        if (step <= 0 || step == moves.length) { return; }
         step -= 2;
         Move undonemove = game.undo();
         GameOutputData gameOutputData = new GameOutputData(undonemove.row, undonemove.column, 0, 0);

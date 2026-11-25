@@ -88,7 +88,7 @@ public class PuzzlesData implements PuzzlesAccessInterface {
         add(new Puzzle("Bluff", "Intermediate", start, moves));
     }
 
-    private void addpuzzle5(){
+    private void addpuzzle5() {
         int[][] coords = new int[18][2];
         coords[0][0] = 6; coords[0][1] = 6;
         coords[1][0] = 5; coords[1][1] = 6;
@@ -109,7 +109,7 @@ public class PuzzlesData implements PuzzlesAccessInterface {
         coords[16][0] = 8; coords[16][1] = 10;
         coords[17][0] = 4; coords[17][1] = 12;
         Move[] start = new Move[18];
-        for(int i = 0; i < 18; i++){
+        for (int i = 0; i < 18; i++) {
             start[i] = new Move(coords[i][0], coords[i][1]);
         }
 
@@ -124,7 +124,7 @@ public class PuzzlesData implements PuzzlesAccessInterface {
         sol[7][0] = 5; sol[7][1] = 5;
         sol[8][0] = 10; sol[8][1] = 10;
         Move[] moves = new Move[9];
-        for(int i = 0; i < 9; i++){
+        for (int i = 0; i < 9; i++) {
             moves[i] = new Move(sol[i][0], sol[i][1]);
         }
 
